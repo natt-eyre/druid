@@ -1,1 +1,2 @@
-<%= button_to 'New', new_issue_path, method: :get %>
+<%= link_to t("issues.index.new"), new_issue_path %>
+<%= render collection: @issues, partial: "issue" %>
