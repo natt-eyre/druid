@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'bootstrap-sass', '~> 3.3.5'
 gem 'capybara'
 gem 'clearance'
 gem 'coffee-rails', '~> 4.1.0'

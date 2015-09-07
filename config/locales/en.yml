@@ -20,6 +20,13 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  activerecord:
+    attributes:
+      issue:
+        title: Title
+        description: Description
+    models:
+      issue: Issue
   issues:
     index:
       new: New

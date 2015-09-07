@@ -1,6 +1,8 @@
 class IssuesController < ApplicationController
+  before_action :require_login
+
   def index
-    @issues = Issue.all
+    @issues = current_user.issues
   end
 
   def new
@@ -8,7 +10,7 @@ class IssuesController < ApplicationController
   end
 
   def create
-    @issue = Issue.new(issue_params)
+    @issue = current_user.issues.new(issue_params)
     if @issue.save
       redirect_to @issue
     else
@@ -18,6 +20,9 @@ class IssuesController < ApplicationController
 
   def show
     @issue = Issue.find(params[:id])
+    if @issue.user != current_user
+      redirect_to issues_path
+    end
   end
 
   private

@@ -1,2 +1,5 @@
-<%= link_to t("issues.index.new"), new_issue_path %>
-<%= render collection: @issues, partial: "issue" %>
+<div class="container-fluid">
+  <div class="list-group">
+    <%= render collection: @issues, partial: "issue" %>
+  </div>
+</div>
