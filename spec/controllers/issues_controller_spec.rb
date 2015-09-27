@@ -37,4 +37,15 @@ describe IssuesController do
       expect(assigns(:issue).title).to eq "our issue"
     end
   end
+
+  describe "#destroy" do
+    it "deletes requested issue" do
+      user = create(:user)
+      issue = create(:issue, user: user, title: 'our issue')
+
+      sign_in_as user
+      expect { delete :destroy, id: issue.id }.to change {
+        user.issues.count }.by(-1)
+    end
+  end
 end

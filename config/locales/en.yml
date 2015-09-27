@@ -32,3 +32,5 @@ en:
       new: New
     new:
       save: Save
+    show:
+      delete: Delete

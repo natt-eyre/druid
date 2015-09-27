@@ -1,2 +1,4 @@
 <%= @issue.title %>
 <%= @issue.description %>
+<%= link_to t("issues.show.delete"), @issue,
+  method: :delete, data: {confirm: "Are you sure?"} %>
