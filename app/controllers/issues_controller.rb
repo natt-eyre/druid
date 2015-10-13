@@ -9,6 +9,10 @@ class IssuesController < ApplicationController
     @issue = Issue.new
   end
 
+  def edit
+    @issue = current_user.issues.find(params[:id])
+  end
+
   def create
     @issue = current_user.issues.new(issue_params)
     if @issue.save
@@ -29,6 +33,15 @@ class IssuesController < ApplicationController
     issue = current_user.issues.find(params[:id])
     issue.destroy!
     redirect_to root_path
+  end
+
+  def update
+    @issue = current_user.issues.find(params[:id])
+    if @issue.update_attributes(issue_params)
+      redirect_to @issue
+    else
+      render :edit
+    end
   end
 
   private

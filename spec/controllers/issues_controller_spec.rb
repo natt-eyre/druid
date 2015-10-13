@@ -48,4 +48,16 @@ describe IssuesController do
         user.issues.count }.by(-1)
     end
   end
+
+  describe "#update" do
+    it "updates requested issue of current user" do
+      user = create(:user)
+      issue = create(:issue, user: user, title: 'old_title')
+
+      sign_in_as user
+      put :update, id: issue.id, issue: { title: "updated_title"}
+
+      expect(assigns(:issue).title).to eq "updated_title"
+    end
+  end
 end
