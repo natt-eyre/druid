@@ -1,0 +1,9 @@
+<%= bootstrap_form_for :session, url: session_path do |f| %>
+    <%= f.email_field :email %>
+    <%= f.password_field :password %>
+  <div class="other-links">
+    <%= link_to t("sessions.form.forgot_password"), new_password_path %>
+  </div>
+    <%= f.submit %>
+<% end %>
+

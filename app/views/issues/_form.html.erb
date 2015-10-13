@@ -1,0 +1,5 @@
+<%= bootstrap_form_for @issue do |f| %>
+  <%= f.text_field :title, hide_label: true, placeholder: "Title" %>
+  <%= f.text_field :description, hide_label: true, placeholder: "Description" %>
+  <%= f.submit t("issues.new.save") %>
+<% end %>

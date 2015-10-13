@@ -14,7 +14,12 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "rails_bootstrap_forms";
 
 .btn-header {
 	margin-left: 5px;
+}
+
+.other-links {
+	margin-bottom: 10px;
 }
