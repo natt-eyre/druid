@@ -4,7 +4,7 @@ class IssuesController < ApplicationController
   def index
     if params["status"] == "completed"
       @issues = current_user.issues.completed
-    else 
+    else
       @issues = current_user.issues.open
     end
   end

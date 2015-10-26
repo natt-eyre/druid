@@ -12,4 +12,16 @@ describe CompletionsController do
       expect(issue.completed?).to be_truthy
     end
   end
+
+  describe "#destroy" do
+    it "should make issue open" do
+      user = create(:user)
+      completed_issue = create(:completed_issue, user: user)
+
+      sign_in_as user
+      completed_issue.open!
+
+      expect(completed_issue.open?).to be_truthy
+    end
+  end
 end

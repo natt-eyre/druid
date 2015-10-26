@@ -1,5 +1,13 @@
-<%= link_to t("issues.index.open"), issues_path({"status": "open"}) %>
-<%= link_to t("issues.index.completed"), issues_path({"status": "completed"}) %>
-<div class="list-group">
-<%= render collection: @issues, partial: "issue" %>
+<div class="other-links">
+  <%= link_to t("issues.index.open"), issues_path({"status": "open"}) %>
+  <%= link_to t("issues.index.completed"), issues_path({"status": "completed"}) %>
 </div>
+<% if @issues.any? %>
+  <div class="list-group">
+  <%= render collection: @issues, partial: "issue" %>
+  </div>
+<% else %>
+  <div>
+  No issues here.
+  </div>
+<% end %>
