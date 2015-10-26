@@ -2,16 +2,30 @@ require "rails_helper"
 
 describe IssuesController do
   describe "#index" do
-    it 'shows issues of current user' do
+    it 'shows open issues of current user if no filters passed' do
       our_user = create(:user)
       other_user = create(:user)
-      our_issue = create(:issue, user: our_user, title: 'our issue')
+      our_open_issue = create(:issue, user: our_user, title: 'our open issue')
+      our_completed_issue = create(:completed_issue, user: our_user, title: 'our completed issue')
       other_issue = create(:issue, user: other_user, title: 'other issue')
 
       sign_in_as our_user
       get :index
 
-      expect(assigns(:issues).map(&:title)).to eq ["our issue"]
+      expect(assigns(:issues).map(&:title)).to eq ["our open issue"]
+    end
+
+    it 'shows completed if proper filter passed' do
+      our_user = create(:user)
+      other_user = create(:user)
+      our_open_issue = create(:issue, user: our_user, title: 'our open issue')
+      our_completed_issue = create(:completed_issue, user: our_user, title: 'our completed issue')
+      other_issue = create(:issue, user: other_user, title: 'other issue')
+
+      sign_in_as our_user
+      get :index, { status: "completed" }
+
+      expect(assigns(:issues).map(&:title)).to eq ["our completed issue"]
     end
   end
 

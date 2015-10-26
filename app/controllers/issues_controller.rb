@@ -2,7 +2,11 @@ class IssuesController < ApplicationController
   before_action :require_login
 
   def index
-    @issues = current_user.issues
+    if params["status"] == "completed"
+      @issues = current_user.issues.completed
+    else 
+      @issues = current_user.issues.open
+    end
   end
 
   def new

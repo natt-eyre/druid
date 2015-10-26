@@ -30,8 +30,13 @@ en:
   issues:
     index:
       new: New
+      donebtn: Done!
+      completed: Completed
+      open: Open
     new:
       save: Save
     show:
       delete: Delete
       edit: Edit
+      donebtn: Done!
+      reopen: Reopen

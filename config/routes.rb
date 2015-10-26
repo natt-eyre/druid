@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root to: "issues#index"
-  resources :issues, only: [:new, :create, :show, :index, :destroy, :update, :edit]
+  resources :issues, only: [:new, :create, :show, :index, :destroy, :update, :edit] do
+    resource :completion, only: [:create]
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
