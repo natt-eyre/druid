@@ -5,6 +5,7 @@ class IssuesController < ApplicationController
     if params["status"] == "completed"
       @issues = current_user.issues.completed
     else
+      @open = true
       @issues = current_user.issues.open
     end
   end

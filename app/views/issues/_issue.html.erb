@@ -1,1 +1,8 @@
-<%= link_to issue.title, issue, class: "list-group-item" %>
+<%= link_to issue, class: "list-group-item" do %>
+  <% if @open %>
+    <span class="glyphicon glyphicon-unchecked"></span>
+  <% else %>
+    <span class="glyphicon glyphicon-check"></span>
+  <% end %>
+  <%= issue.title %>
+<% end %>

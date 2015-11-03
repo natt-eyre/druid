@@ -1,6 +1,17 @@
 <div class="other-links">
-  <%= link_to t("issues.index.open"), issues_path({"status": "open"}) %>
-  <%= link_to t("issues.index.completed"), issues_path({"status": "completed"}) %>
+  <% if @open %>
+    <strong>
+      <%= link_to t("issues.index.open"), issues_path({"status": "open"}) %>
+    </strong>
+    <%= link_to t("issues.index.completed"), issues_path({"status": "completed"}) %>
+
+  <% else %>
+
+    <%= link_to t("issues.index.open"), issues_path({"status": "open"}) %>
+    <strong>
+      <%= link_to t("issues.index.completed"), issues_path({"status": "completed"}) %>
+    </strong>
+  <% end %>
 </div>
 <% if @issues.any? %>
   <div class="list-group">
