@@ -25,14 +25,18 @@ en:
       issue:
         title: Title
         description: Description
+      project:
+        name: Name
     models:
       issue: Issue
+      project: Project
   issues:
     index:
       new: New
       donebtn: Done!
       completed: Completed
       open: Open
+      issues: Issues
     new:
       save: Save
     show:
@@ -40,3 +44,8 @@ en:
       edit: Edit
       donebtn: Done!
       reopen: Reopen
+  projects:
+    new:
+      OK: OK
+    index:
+      new: New project

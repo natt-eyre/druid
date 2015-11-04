@@ -1,49 +1,45 @@
 class IssuesController < ApplicationController
   before_action :require_login
+  before_action :get_project, except: [ :new ]
+  before_action :get_issue, only: [ :show, :edit, :destroy, :update ]
 
   def index
     if params["status"] == "completed"
-      @issues = current_user.issues.completed
+      @issues = @project.issues.completed
     else
       @open = true
-      @issues = current_user.issues.open
+      @issues = @project.issues.open
     end
   end
 
   def new
-    @issue = Issue.new
+    @issue = @project.issues.new
   end
 
   def edit
-    @issue = current_user.issues.find(params[:id])
   end
 
   def create
-    @issue = current_user.issues.new(issue_params)
+    @issue = @project.issues.new(issue_params)
+    @issue.user = current_user
     if @issue.save
-      redirect_to @issue
+      redirect_to project_issue_path(@project, @issue)
     else
       render :new
     end
   end
 
   def show
-    @issue = Issue.find(params[:id])
-    if @issue.user != current_user
-      redirect_to issues_path
-    end
   end
 
   def destroy
-    issue = current_user.issues.find(params[:id])
-    issue.destroy!
+    @issue.destroy!
     redirect_to root_path
   end
 
   def update
-    @issue = current_user.issues.find(params[:id])
     if @issue.update_attributes(issue_params)
-      redirect_to @issue
+      redirect_to project_issue_path(@project, @issue)
     else
       render :edit
     end
@@ -53,5 +49,13 @@ class IssuesController < ApplicationController
 
   def issue_params
     params.require(:issue).permit(:title, :description)
+  end
+
+  def get_project
+    @project = current_user.projects.find(params[:project_id])
+  end
+
+  def get_issue
+    @issue = @project.issues.find(params[:id])
   end
 end

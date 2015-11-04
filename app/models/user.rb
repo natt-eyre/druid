@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
   include Clearance::User
   has_many :issues
-  has_many :completions
+  has_and_belongs_to_many :projects
 end
