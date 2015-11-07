@@ -1,5 +1,5 @@
-<%= bootstrap_form_for @issue do |f| %>
-  <%= f.select :project,
+<%= bootstrap_form_for [@project, @issue] do |f| %>
+  <%= f.select "project_id", current_user.projects.all.collect {|p| [ p.name, p.id ] } %>
   <%= f.text_field :title, hide_label: true, placeholder: "Title" %>
   <%= f.text_area :description, hide_label: true, placeholder: "Description" %>
   <%= f.submit t("issues.new.save") %>

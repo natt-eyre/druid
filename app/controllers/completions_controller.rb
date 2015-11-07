@@ -4,12 +4,14 @@ class CompletionsController < ApplicationController
   def create
     @issue = Issue.find(params[:issue_id])
     @issue.complete!
-    redirect_to issue_path(@issue)
+    @project = @issue.project
+    redirect_to project_issue_path(@project, @issue)
   end
 
   def destroy
     @issue = Issue.find(params[:issue_id])
     @issue.open!
-    redirect_to issue_path(@issue)
+    @project = @issue.project
+    redirect_to project_issue_path(@project, @issue)
   end
 end

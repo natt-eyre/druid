@@ -1,6 +1,6 @@
 class IssuesController < ApplicationController
   before_action :require_login
-  before_action :get_project, except: [ :new ]
+  before_action :get_project
   before_action :get_issue, only: [ :show, :edit, :destroy, :update ]
 
   def index
@@ -34,7 +34,7 @@ class IssuesController < ApplicationController
 
   def destroy
     @issue.destroy!
-    redirect_to root_path
+    redirect_to project_issues_path(@project)
   end
 
   def update

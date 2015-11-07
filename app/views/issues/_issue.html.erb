@@ -1,4 +1,4 @@
-<%= link_to issue, class: "list-group-item" do %>
+<%= link_to project_issue_path(@project, issue), class: "list-group-item" do %>
   <% if @open %>
     <span class="glyphicon glyphicon-unchecked"></span>
   <% else %>

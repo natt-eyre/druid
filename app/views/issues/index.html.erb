@@ -1,17 +1,18 @@
-<div class="other-links">
+<div class="other-links h3">
   <% if @open %>
     <strong>
-      <%= link_to t("issues.index.open"), issues_path({"status": "open"}) %>
+      <%= link_to t("issues.index.open"), project_issues_path({project_id: @project, "status": "open"}) %>
     </strong>
-    <%= link_to t("issues.index.completed"), issues_path({"status": "completed"}) %>
+    <%= link_to t("issues.index.completed"), project_issues_path({project_id: @project, "status": "completed"}) %>
 
   <% else %>
 
-    <%= link_to t("issues.index.open"), issues_path({"status": "open"}) %>
+    <%= link_to t("issues.index.open"), project_issues_path({project_id: @project, "status": "open"}) %>
     <strong>
-      <%= link_to t("issues.index.completed"), issues_path({"status": "completed"}) %>
+      <%= link_to t("issues.index.completed"), project_issues_path({project_id: @project, "status": "completed"}) %>
     </strong>
   <% end %>
+  <%= link_to t("issues.index.new"), new_project_issue_path(@project), class: "btn btn-success pull-right", role: "button" %>
 </div>
 <% if @issues.any? %>
   <div class="list-group">

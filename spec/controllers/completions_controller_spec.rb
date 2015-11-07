@@ -4,7 +4,8 @@ describe CompletionsController do
   describe "#create" do
     it 'should make issue completed' do
       user = create(:user)
-      issue = create(:issue, user: user)
+      project = create(:project, name: "Name1", users: [user])
+      issue = create(:issue, project: project, user: user)
 
       sign_in_as user
       issue.complete!
@@ -16,7 +17,8 @@ describe CompletionsController do
   describe "#destroy" do
     it "should make issue open" do
       user = create(:user)
-      completed_issue = create(:completed_issue, user: user)
+      project = create(:project, name: "Name1", users: [user])
+      completed_issue = create(:completed_issue, project: project, user: user)
 
       sign_in_as user
       completed_issue.open!
