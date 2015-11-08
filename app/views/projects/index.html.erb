@@ -1,3 +1,6 @@
-<div class="list-group">
-  <%= render collection: @projects, partial: "project" %>
-</div>
+  <div class="other-links">
+  <%= link_to t("projects.index.new"), new_project_path, class: "btn btn-info", role: "button" %>
+  </div>
+  <div class="list-group">
+    <%= render collection: @projects, partial: "project" %>
+  </div>

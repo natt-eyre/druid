@@ -1,0 +1,6 @@
+<div class="text-center">
+<%= bootstrap_form_for @project, layout: :inline do |f| %>
+  <%= f.text_field :name, hide_label: true, placeholder: "Name for your project" %>
+  <%= f.submit t("projects.new.OK") %>
+<% end %>
+</div>

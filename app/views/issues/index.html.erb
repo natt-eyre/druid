@@ -1,4 +1,5 @@
 <div class="other-links h3">
+  <%= @project.name+":" %>
   <% if @open %>
     <strong>
       <%= link_to t("issues.index.open"), project_issues_path({project_id: @project, "status": "open"}) %>
