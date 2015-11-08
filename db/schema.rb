@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151104160656) do
+ActiveRecord::Schema.define(version: 20151108114137) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,14 @@ ActiveRecord::Schema.define(version: 20151104160656) do
   add_index "issues", ["project_id"], name: "index_issues_on_project_id", using: :btree
   add_index "issues", ["user_id"], name: "index_issues_on_user_id", using: :btree
 
+  create_table "issues_tags", id: false, force: :cascade do |t|
+    t.integer "issue_id"
+    t.integer "tag_id"
+  end
+
+  add_index "issues_tags", ["issue_id"], name: "index_issues_tags_on_issue_id", using: :btree
+  add_index "issues_tags", ["tag_id"], name: "index_issues_tags_on_tag_id", using: :btree
+
   create_table "projects", force: :cascade do |t|
     t.string   "name",       null: false
     t.datetime "created_at", null: false
@@ -42,6 +50,16 @@ ActiveRecord::Schema.define(version: 20151104160656) do
 
   add_index "projects_users", ["project_id"], name: "index_projects_users_on_project_id", using: :btree
   add_index "projects_users", ["user_id"], name: "index_projects_users_on_user_id", using: :btree
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.string   "color"
+    t.integer  "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "tags", ["project_id"], name: "index_tags_on_project_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.datetime "created_at",                     null: false
@@ -57,4 +75,5 @@ ActiveRecord::Schema.define(version: 20151104160656) do
 
   add_foreign_key "issues", "projects"
   add_foreign_key "issues", "users"
+  add_foreign_key "tags", "projects"
 end

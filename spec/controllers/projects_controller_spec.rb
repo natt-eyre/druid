@@ -16,7 +16,7 @@ describe ProjectsController do
   end
 
   describe "#create" do
-    it "creates projects for current user" do
+    it "creates projects for current user with default tags" do
       user = create(:user)
 
       sign_in_as user
@@ -24,6 +24,7 @@ describe ProjectsController do
 
       expect(Project.last.users).to eq [user]
       expect(user.projects).to eq [Project.last]
+      expect(Project.last.tags.count).to eq(2)
     end
   end
 end
