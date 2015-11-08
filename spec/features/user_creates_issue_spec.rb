@@ -13,7 +13,7 @@ feature "User creates an issue" do
     fill_in Issue.human_attribute_name("description"), with: "desctest"
     click_on I18n.t("issues.new.save")
 
-    expect(page.current_path).to eq(project_issue_path(project, Issue.last))
+    expect(page.current_path).to eq(project_issues_path(project))
     expect(page).to have_content("titletest")
   end
 end

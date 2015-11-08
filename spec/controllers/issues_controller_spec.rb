@@ -41,7 +41,7 @@ describe IssuesController do
       project = create(:project, name: "Name1", users: [user])
 
       sign_in_as user
-      post :create, { project_id: project, issue: { title: "IssueOne" } }
+      post :create, { project_id: project, issue: { title: "IssueOne", project_id: project } }
 
       expect(Issue.last.user).to eq user
       expect(Issue.last.project).to eq project

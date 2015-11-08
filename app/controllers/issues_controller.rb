@@ -20,10 +20,9 @@ class IssuesController < ApplicationController
   end
 
   def create
-    @issue = @project.issues.new(issue_params)
-    @issue.user = current_user
+    @issue = current_user.issues.new(issue_params)
     if @issue.save
-      redirect_to project_issue_path(@project, @issue)
+      redirect_to project_issues_path(@project)
     else
       render :new
     end
@@ -39,7 +38,7 @@ class IssuesController < ApplicationController
 
   def update
     if @issue.update_attributes(issue_params)
-      redirect_to project_issue_path(@project, @issue)
+      redirect_to project_issues_path(@project)
     else
       render :edit
     end
@@ -48,7 +47,7 @@ class IssuesController < ApplicationController
   private
 
   def issue_params
-    params.require(:issue).permit(:title, :description)
+    params.require(:issue).permit(:title, :description, :project_id)
   end
 
   def get_project
