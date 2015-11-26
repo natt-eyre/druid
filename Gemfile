@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.0.0'
 
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'bootstrap_form'
@@ -9,6 +10,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
 gem 'pg'
 gem 'rails', '4.2.2'
+gem 'rails_12factor', group: :production
 gem 'sass-rails', '~> 5.0'
 gem 'simple_form'
 gem 'turbolinks'
