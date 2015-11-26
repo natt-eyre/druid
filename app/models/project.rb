@@ -13,5 +13,5 @@ class Project < ActiveRecord::Base
     feature = Tag.create!(name: "feature", color: "009800", project_id: id)
     tags << bug
     tags << feature
-  end 
+  end
 end

@@ -2,6 +2,6 @@
   <%= f.select "project_id", current_user.projects.all.collect {|p| [ p.name, p.id ] } %>
   <%= f.text_field :title, hide_label: true, placeholder: "Title" %>
   <%= f.text_area :description, hide_label: true, placeholder: "Description" %>
-  <%= f.collection_select :id, @project.tags, :id, :name, {}, {multiple: true} %>
+  <%= f.collection_select :id, @project.tags, :id, :name, {label: "choose tags"}, {multiple: true} %>
   <%= f.submit t("issues.new.save") %>
 <% end %>
