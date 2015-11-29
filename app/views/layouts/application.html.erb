@@ -28,8 +28,10 @@
           <li><p class="navbar-text">Signed in as: <%= current_user.email %></p></li>
           <li><%= button_to 'Sign out', sign_out_path, class: "btn btn-default navbar-btn btn-header", method: :delete %></li>
         <% else %>
-          <li><%= button_to 'Sign in', sign_in_path, class: "btn btn-default navbar-btn btn-header", method: :get %></li>
-          <% if Clearance.configuration.allow_sign_up? %>
+          <% unless current_page?(sign_in_url) %>
+            <li><%= button_to 'Sign in', sign_in_path, class: "btn btn-default navbar-btn btn-header", method: :get %></li>
+          <% end %>
+          <% if Clearance.configuration.allow_sign_up? && !current_page?(sign_up_url)%>
             <li><%= button_to 'Sign up', sign_up_path, class: "btn btn-default navbar-btn btn-header", method: :get %></li>
           <% end %>
         <% end %>
