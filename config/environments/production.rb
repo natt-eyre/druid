@@ -84,4 +84,6 @@ Rails.application.configure do
   ActionMailer::Base.smtp_settings = SMTP_SETTINGS
 
   config.active_job.queue_adapter = :delayed_job
+  
+  config.action_mailer.default_url_options = { host: ENV.fetch("HOST") }
 end
